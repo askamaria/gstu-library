@@ -1,0 +1,16 @@
+.book-annotation-preview{
+    height: 150px;
+    overflow: auto;
+}
+.book-image {
+    height: 300px;
+}
+.card-title {
+    height: 100px;
+}
+.list-header {
+    background-color: #35d65a;
+}
+#author-input-div {
+    width: 70%;
+}
