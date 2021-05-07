@@ -1,10 +1,7 @@
 package by.gstu.library.controller;
 
 import by.gstu.library.model.Book;
-import by.gstu.library.model.Pager;
-import by.gstu.library.repository.AuthorRepository;
-import by.gstu.library.repository.BookRepository;
-import by.gstu.library.repository.GenreRepository;
+import by.gstu.library.model.Paginator;
 import by.gstu.library.service.BookService;
 import by.gstu.library.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Objects;
-import java.util.Optional;
-
 @Controller
 public class MainController {
     @Autowired
@@ -27,28 +21,21 @@ public class MainController {
     private GenreService genreService;
 
     @GetMapping(value = {"/", "/home"})
-    public String booksPaging(@RequestParam Optional<Integer> page,
-                              @RequestParam Optional<Integer> pageSize,
-                              @RequestParam Optional<String> genre,
-                              @RequestParam Optional<String> author,
-                              @RequestParam Optional<String> sortedBy,
-                              @RequestParam Optional<Sort.Direction> direction,
+    public String booksPaging(@RequestParam(defaultValue = "1") Integer page,
+                              @RequestParam(defaultValue = "6") Integer pageSize,
+                              @RequestParam(defaultValue = "") String genre,
+                              @RequestParam(defaultValue = "") String author,
+                              @RequestParam(defaultValue = "id") String sortedBy,
                               Model model) {
-        int newPage = page.orElse(1);
-        int currentPageSize = pageSize.orElse(2);
-        String currentAuthor = author.orElse("");
-        String currentGenre = genre.orElse("");
-        String currentSortedByField = sortedBy.orElse("id");
-        Sort.Direction currentDirection = direction.orElse(Sort.Direction.ASC);
-        Page<Book> booksPage = bookService.getAllByGenreAndAuthor( currentGenre, currentAuthor,
-                newPage - 1, currentPageSize, currentSortedByField, currentDirection);
-        Pager<Book> pager = new Pager<>(booksPage);
-        model.addAttribute("pager", pager);
+        Page<Book> booksPage = bookService.getAllByGenreAndAuthor(genre, author,
+                page - 1, pageSize, sortedBy, Sort.Direction.ASC);
+        Paginator<Book> paginator = new Paginator<>(booksPage);
+        model.addAttribute("paginator", paginator);
         model.addAttribute("books", booksPage.getContent());
         model.addAttribute("genres", genreService.getAll());
-        model.addAttribute("selectedGenre", currentGenre);
-        model.addAttribute("sortedBy", currentSortedByField);
-        model.addAttribute("author", currentAuthor);
+        model.addAttribute("selectedGenre", genre);
+        model.addAttribute("sortedBy", sortedBy);
+        model.addAttribute("author", author);
         return "index";
     }
 

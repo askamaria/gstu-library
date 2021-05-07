@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class Pager<T> {
+public class Paginator<T> {
     private List<Long> availablePages;
     private long lastPage;
     private long currentPage;
 
-    public Pager(Page<T> page) {
+    public Paginator(Page<T> page) {
         this.lastPage = page.getTotalPages();
         this.currentPage = page.getNumber() + 1;
         availablePages = new ArrayList<>();

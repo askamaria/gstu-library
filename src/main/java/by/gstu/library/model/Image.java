@@ -2,18 +2,12 @@ package by.gstu.library.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "images", catalog = "library")
 @Data
-@DynamicUpdate
-@DynamicInsert
-@SelectBeforeUpdate
 @NoArgsConstructor
 public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)

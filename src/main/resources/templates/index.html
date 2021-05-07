@@ -57,7 +57,7 @@
           <div class="list-group">
             <a th:href="@{/home}" class="list-group-item list-group-item-action list-header">Жанры</a>
             <div th:each="genge: ${genres}">
-              <a href="#" th:text="${genge.getGenre()}" th:classappend="${(selectedGenre != null &amp;&amp; selectedGenre.equals(genge.getGenre()))} ? active" th:id="${(selectedGenre != null &amp;&amp; selectedGenre.equals(genge.getGenre()))} ? 'active-genre'" class="list-group-item list-group-item-action genre-links"></a>
+              <a href="#" th:text="${genge.getGenre()}" th:classappend="${(selectedGenre != null && selectedGenre.equals(genge.getGenre()))} ? active" th:id="${(selectedGenre != null  && selectedGenre.equals(genge.getGenre()))} ? 'active-genre'" class="list-group-item list-group-item-action genre-links"></a>
             </div>
           </div>
           <div class="list-group">
@@ -101,13 +101,13 @@
                 <span>«</span>
               </a>
             </li>
-            <div th:each="page: ${pager.getAvailablePages()}">
-              <li th:classappend="${page == pager.getCurrentPage()} ? active" class="page-item">
+            <div th:each="page: ${paginator.getAvailablePages()}">
+              <li th:classappend="${page == paginator.getCurrentPage()} ? active" class="page-item">
                 <a th:text="${page}" class="page-link" href="#"></a>
               </li>
             </div>
             <li class="page-item">
-              <a class="page-link" th:href="@{/home(page = ${pager.getLastPage()})}">
+              <a class="page-link" th:href="@{/home(page = ${paginator.getLastPage()})}">
                 <span>»</span>
               </a>
             </li>
@@ -129,7 +129,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo>
   <script src="js/buttonEvents.js"></script>
-  <script src="js/indexButtonEvents.js"></script>
+  <script src="js/enterButtonEvents.js"></script>
 </body>
 
 </html>

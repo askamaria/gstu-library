@@ -1,23 +1,16 @@
 package by.gstu.library.model;
 
 
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import lombok.*;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.SelectBeforeUpdate;
-import org.springframework.boot.jackson.JsonComponent;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name = "books", catalog = "library")
 @Data
-@DynamicUpdate
-@DynamicInsert
-@SelectBeforeUpdate
 @NoArgsConstructor
 @AllArgsConstructor
 public class Book {
@@ -27,8 +20,8 @@ public class Book {
     private Long id;
     @Column(name = "book_name")
     private String bookName;
-    @ManyToOne
-    @JoinColumn
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "image_id")
     private Image image;
     @ManyToOne
     @JoinColumn
