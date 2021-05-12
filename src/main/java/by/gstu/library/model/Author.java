@@ -15,8 +15,7 @@ public class Author {
     @Column(name = "full_name")
     private String fullName;
 
-    @Basic(fetch = FetchType.LAZY)
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private List<Book> bookList;
 
     @Override

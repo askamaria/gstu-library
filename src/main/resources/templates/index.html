@@ -15,8 +15,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
 <!--  <link rel="stylesheet" href="../static/css/wireframe.css">-->
 <!--  <link rel="stylesheet" href="../static/css/custom.css">-->
-            <link rel="stylesheet" href="/css/wireframe.css">
-            <link rel="stylesheet" href="/css/custom.css">
+              <link rel="stylesheet" href="/css/wireframe.css">
+              <link rel="stylesheet" href="/css/custom.css">
 </head>
 
 <body class="body" style="">
@@ -31,7 +31,8 @@
       <div class="row">
         <div class="col-md-12 p-0 m-0" style="">
           <form class="form-inline d-flex justify-content-center">
-            <div class="input-group" id="author-input-div"> <input th:value="${author}" id="author-search-input" class="form-control author-search" placeholder="Автор(Примеры: 'чехов' 'чехов антон' 'чехов антон павлович')">
+            <div class="input-group" id="author-input-div">
+              <input th:value="${author}" id="author-search-input" class="form-control author-search" placeholder="Автор(Примеры: 'чехов' 'чехов антон' 'чехов антон павлович')">
               <div class="input-group-append"> <button id="author-search-button" class="btn btn-primary" type="button">Поиск по Автору</button> </div>
             </div>
           </form>
@@ -57,7 +58,7 @@
           <div class="list-group">
             <a th:href="@{/home}" class="list-group-item list-group-item-action list-header">Жанры</a>
             <div th:each="genge: ${genres}">
-              <a href="#" th:text="${genge.getGenre()}" th:classappend="${(selectedGenre != null && selectedGenre.equals(genge.getGenre()))} ? active" th:id="${(selectedGenre != null  && selectedGenre.equals(genge.getGenre()))} ? 'active-genre'" class="list-group-item list-group-item-action genre-links"></a>
+              <a href="#" th:text="${genge.getGenre()}" th:classappend="${selectedGenre.equals(genge.getGenre())} ? active" th:id="${selectedGenre.equals(genge.getGenre())} ? 'active-genre'" class="list-group-item list-group-item-action genre-links"></a>
             </div>
           </div>
           <div class="list-group">
@@ -117,7 +118,7 @@
     </div>
   </div>
   <footer class="text-muted py-1">
-    <div class="container">
+    <div class="container text-center">
       <p class="float-right">
         <a href="#">Back to top</a>
       </p>
