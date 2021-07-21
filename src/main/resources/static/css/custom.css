@@ -5,12 +5,15 @@
 .book-image {
     height: 300px;
 }
-.card-title {
-    height: 100px;
-}
 .list-header {
     background-color: #35d65a;
 }
 #author-input-div {
     width: 70%;
+}
+.card {
+    height: 100%;
+}
+.card-title{
+    height: 60px;
 }

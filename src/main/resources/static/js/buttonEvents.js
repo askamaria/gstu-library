@@ -2,7 +2,7 @@
     paginationEvents();
     sortingEvents();
     authorSearchEvent();
-    genreSortingEvent();
+    genreSearchEvent();
 })();
 
 function paginationEvents() {
@@ -43,7 +43,7 @@ function authorSearchEvent() {
     };
 }
 
-function genreSortingEvent() {
+function genreSearchEvent() {
     const genreLinks = document.getElementsByClassName("genre-links");
     Array.from(genreLinks).forEach((element => element.onclick = function (event) {
         const genreLink = event.target;
